@@ -20,7 +20,6 @@ namespace cs330courses
             }
             Console.WriteLine("---------");
 
-            
             // Make each of the next 6 sections of code work
             
             List<Course> theList2 = service.getCourses();
