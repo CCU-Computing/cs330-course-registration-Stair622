@@ -8,7 +8,7 @@ namespace cs330_proj1
         private CourseRepository repo = new CourseRepository();
 
 
-        //As a student, I want to search for course offerings that meet core goals 
+         //As a student, I want to search for course offerings that meet core goals 
         // so that I can register easily for courses that meet my program requirements
         
          public List<CourseOffering> getOfferingsByGoalIdAndSemester(String theGoalId, String semester) {
@@ -61,3 +61,4 @@ namespace cs330_proj1
         
      }
 }
+
