@@ -28,8 +28,6 @@ namespace cs330_proj1
         /* As a student, I want to see all course offerings by semester, so that I can choose from what's
            available to register for next semester */
 
-         /* START HERE: LEFT OFF HERE ON USER STORY 3 */
-
          public List <CourseOffering> getCourseOfferingsBySemester(String semester) {
           List<CourseOffering> allCourseOfferings = new List<CourseOffering>();
          foreach (CourseOffering co in repo.Offerings) {
