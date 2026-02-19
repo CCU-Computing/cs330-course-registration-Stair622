@@ -29,6 +29,7 @@ namespace cs330_proj1
            available to register for next semester */
 
          /* START HERE: LEFT OFF HERE ON USER STORY 3 */
+
          public List <CourseOffering> getCourseOfferingsBySemester(String semester) {
           List<CourseOffering> allCourseOfferings = new List<CourseOffering>();
          foreach (CourseOffering co in repo.Offerings) {
@@ -37,13 +38,9 @@ namespace cs330_proj1
             }
           }
           return allCourseOfferings;
-
-
          }
-         
+        
                
-         
-
         /* As a student I want to see all course offerings by semester and department so that I can 
         choose major courses to register for */
 
@@ -57,7 +54,6 @@ namespace cs330_proj1
         /* As a freshman adviser, I want to see all the core goals which do not have any course offerings 
            for a given semester, so that I can work with departments to get some courses offered
            that students can take to meet those goals */
-
         
      }
 }

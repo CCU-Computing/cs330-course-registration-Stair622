@@ -49,7 +49,7 @@ namespace cs330_proj1
             CourseOffering co1 = new CourseOffering() {
                 TheCourse=c1,
                 Section="D1",
-                Semester="Spring 2021"
+                Semester="Fall 2020"
 
             };
             CourseOffering co2 = new CourseOffering() {

@@ -34,7 +34,9 @@ namespace cs330courses
             foreach(CourseOffering c in theList3) {
                 Console.WriteLine(c);
             }
+            
             Console.WriteLine("---------");
+            
             /*
             List<CourseOffering> theList4 = service.getCourseOfferingsBySemesterAndDept("Fall 2020","CSCI");
             foreach(CourseOffering c in theList4) {
