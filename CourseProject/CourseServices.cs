@@ -5,15 +5,20 @@ namespace cs330_proj1
 {
     public class CourseServices
     {
-        private CourseRepository repo = new CourseRepository();
+        //private CourseRepository repo = new CourseRepository();
+        private readonly ICourseRepository _repo;
+
+        public CourseServices(ICourseRepository courseRepo) {
+          _repo=courseRepo;
+        }
 
 
-         //As a student, I want to search for course offerings that meet core goals 
+        //As a student, I want to search for course offerings that meet core goals 
         // so that I can register easily for courses that meet my program requirements
         
          public List<CourseOffering> getOfferingsByGoalIdAndSemester(String theGoalId, String semester) {
           //finish this method during the tutorial 
-          return repo.getOfferingsByGoalIdAndSemester(theGoalId, semester);
+          return _repo.getOfferingsByGoalIdAndSemester(theGoalId, semester);
         }
 
         
@@ -21,7 +26,7 @@ namespace cs330_proj1
 
         /* As a student, I want to see all available courses so that I know what my options are */
         public List<Course> getCourses() {
-          List<Course> allCourses = repo.Courses;
+          List<Course> allCourses = _repo.Courses;
           return allCourses;
         }
 
@@ -30,7 +35,7 @@ namespace cs330_proj1
 
          public List <CourseOffering> getCourseOfferingsBySemester(String semester) {
           List<CourseOffering> allCourseOfferings = new List<CourseOffering>();
-         foreach (CourseOffering co in repo.Offerings) {
+         foreach (CourseOffering co in _repo.Offerings) {
             if(co.Semester.Equals(semester)) {
               allCourseOfferings.Add(co);
             }
@@ -44,7 +49,7 @@ namespace cs330_proj1
 
         public List<CourseOffering> getCourseOfferingsBySemesterAndDept(String semester, String dept) {
           List<CourseOffering> allowCourseOfferings = new List<CourseOffering>();
-          foreach (CourseOffering co in repo.Offerings) {
+          foreach (CourseOffering co in _repo.Offerings) {
             if (co.Semester.Equals(semester) && co.TheCourse.Name.StartsWith(dept)) {
               allowCourseOfferings.Add(co);
             }

@@ -11,9 +11,10 @@ namespace cs330courses
             Console.WriteLine("Hello World!");
             Console.WriteLine("My name is Jordan");
             
-            CourseServices service = new CourseServices();
-
             Console.WriteLine("---------");
+            CourseRepository repo = new CourseRepository();
+            CourseServices service = new CourseServices(repo);
+
             List<CourseOffering> theList = service.getOfferingsByGoalIdAndSemester("CG2","Spring 2021");
             foreach(CourseOffering c in theList) {
                 Console.WriteLine(c);
