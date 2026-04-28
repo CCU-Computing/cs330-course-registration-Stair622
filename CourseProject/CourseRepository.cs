@@ -7,8 +7,7 @@ namespace cs330_proj1
         public List<Course> Courses {get;set;}
         public List<CoreGoal> Goals {get;set;}
         public List<CourseOffering> Offerings {get;set;}
-
-        List<CourseOffering> getOfferingsByGoalIdAndSemester(string theGoalId, string semester);
+        
     }
 
     public class CourseRepository : ICourseRepository {
@@ -108,7 +107,7 @@ namespace cs330_proj1
         }//end constructor
 
 
-        public List<CourseOffering> getOfferingsByGoalIdAndSemester(String theGoalId, String semester) {
+        public List<CourseOffering> GetOfferingsByGoalIdAndSemester(String theGoalId, String semester) {
             CoreGoal theGoal=null;
             foreach(CoreGoal cg in Goals) {
                 if(cg.Id.Equals(theGoalId)) {

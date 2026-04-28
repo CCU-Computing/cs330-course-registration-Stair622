@@ -16,16 +16,37 @@ namespace cs330_proj1
         //As a student, I want to search for course offerings that meet core goals 
         // so that I can register easily for courses that meet my program requirements
         
-         public List<CourseOffering> getOfferingsByGoalIdAndSemester(String theGoalId, String semester) {
-          //finish this method during the tutorial 
-          return _repo.getOfferingsByGoalIdAndSemester(theGoalId, semester);
+         public List<CourseOffering> GetOfferingsByGoalIdAndSemester(String theGoalId, String semester) {
+          //finish this method during the tutorial
+          List<CoreGoal> theGoals = _repo.Goals;
+          List<CourseOffering> theOfferings = _repo.Offerings;
+
+          CoreGoal theGoal = null;
+          foreach (CoreGoal cg in theGoals) {
+          if (cg.Id.Equals(theGoalId)) {
+            theGoal=cg; break;
+            }
+          }
+
+          if (theGoal==null) throw new Exception("Didn't find the goal");
+          List<CourseOffering> courseOfferingsThatMeetGoal = new List<CourseOffering>();
+
+          foreach (CourseOffering c in theOfferings) {
+          if (c.Semester.Equals(semester)
+          && theGoal.Courses.Contains(c.TheCourse) )
+          {
+            courseOfferingsThatMeetGoal.Add(c);
+          }
+          
+        }
+          return courseOfferingsThatMeetGoal; 
         }
 
         
         //Add more service functions here, as needed, for the project
 
         /* As a student, I want to see all available courses so that I know what my options are */
-        public List<Course> getCourses() {
+        public List<Course> GetCourses() {
           List<Course> allCourses = _repo.Courses;
           return allCourses;
         }
@@ -33,7 +54,7 @@ namespace cs330_proj1
         /* As a student, I want to see all course offerings by semester, so that I can choose from what's
            available to register for next semester */
 
-         public List <CourseOffering> getCourseOfferingsBySemester(String semester) {
+         public List <CourseOffering> GetCourseOfferingsBySemester(String semester) {
           List<CourseOffering> allCourseOfferings = new List<CourseOffering>();
          foreach (CourseOffering co in _repo.Offerings) {
             if(co.Semester.Equals(semester)) {
@@ -47,7 +68,7 @@ namespace cs330_proj1
         /* As a student I want to see all course offerings by semester and department so that I can 
         choose major courses to register for */
 
-        public List<CourseOffering> getCourseOfferingsBySemesterAndDept(String semester, String dept) {
+        public List<CourseOffering> GetCourseOfferingsBySemesterAndDept(String semester, String dept) {
           List<CourseOffering> allowCourseOfferings = new List<CourseOffering>();
           foreach (CourseOffering co in _repo.Offerings) {
             if (co.Semester.Equals(semester) && co.TheCourse.Name.StartsWith(dept)) {
@@ -73,4 +94,3 @@ namespace cs330_proj1
         
      }
 }
-
