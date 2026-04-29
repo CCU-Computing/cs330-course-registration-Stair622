@@ -89,6 +89,49 @@ public class CourseServicesTests
 
 
     // 4. As a student I want to see all course offerings by semester and department so that I can choose major courses to register for. 
+    [Fact]
+    public void GetCourseOfferingsBySemesterAndDept_OneOfferingMatches_ReturnsOneOffering() {
+        // Arrange
+        var mockRepository = new Mock<ICourseRepository>();
+        mockRepository.Setup(m => m.Offerings).Returns(new List<CourseOffering>() {
+            new CourseOffering() {
+                Section = "1",
+                Semester = "Spring 2021",
+                TheCourse = GetTestCourses().First()
+            }
+        });
+
+        var courseServices = new CourseServices(mockRepository.Object);
+
+        // Act
+        var result = courseServices.getCourseOfferingsBySemesterAndDept("Spring 2021", "ARTD");
+
+        // Assert
+        var itemInList = Assert.Single(result);
+        Assert.Equal("Spring 2021", itemInList.Semester);
+        Assert.Equal("ARTD 201", itemInList.TheCourse.Name);
+    }
+
+    [Fact]
+    public void GetCourseOfferingsBySemesterAndDept_NoOfferingMatches_ReturnsEmptyList() {
+        // Arrange
+        var mockRepository = new Mock<ICourseRepository>();
+        mockRepository.Setup(m => m.Offerings).Returns(new List<CourseOffering>() {
+            new CourseOffering() {
+                Section = "1",
+                Semester = "Fall 2020",
+                TheCourse = GetTestCourses().First()
+            }
+        });
+
+        var courseServices = new CourseServices(mockRepository.Object);
+
+        // Act
+        var result = courseServices.getCourseOfferingsBySemesterAndDept("Spring 2021", "ARTD");
+
+        // Assert
+        Assert.Empty(result);
+    }
 
 
     private List<Course> GetTestCourses()
