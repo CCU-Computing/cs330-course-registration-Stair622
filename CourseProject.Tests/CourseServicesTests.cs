@@ -11,7 +11,7 @@ public class CourseServicesTests
 {
     // 2. As a student, I want to see all available courses so that I know what my options are.
     [Fact]
-    public void getCourses_CoursesExist_ReturnsAllCourses() {
+    public void GetCourses_CoursesExist_ReturnsAllCourses() {
         // Arrange
         var mockRepository = new Mock<ICourseRepository>();
         mockRepository.Setup(m => m.Courses).Returns(GetTestCourses());
@@ -28,7 +28,7 @@ public class CourseServicesTests
     }
 
     [Fact]
-    public void getCourses_NoCoursesExist_ReturnsEmptyList() {
+    public void GetCourses_NoCoursesExist_ReturnsEmptyList() {
         // Arrange
         var mockRepository = new Mock<ICourseRepository>();
         mockRepository.Setup(m => m.Courses).Returns(new List<Course>());
